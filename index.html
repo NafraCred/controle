@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Controle Financeiro 2026</title>
+<link rel="icon" href="logo.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--sf:#fff;--ink:#1e2433;--mut:#6b7488;--ln:#e8ebf3;--ac:#5b5bd6;--ac2:#8b5cf6;--rec:#0f9d76;--des:#e5484d;--meta:#f5a524;--sh:0 1px 2px #1e24330a,0 8px 24px #1e24330f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1220;--sf:#181c2e;--ink:#eceefa;--mut:#9aa3bd;--ln:#272c44;--ac:#8b8bf0;--ac2:#a78bfa;--rec:#34d3a0;--des:#ff7b7f;--meta:#fbbf4a;--sh:none}}
+:root[data-theme="dark"]{--bg:#0f1220;--sf:#181c2e;--ink:#eceefa;--mut:#9aa3bd;--ln:#272c44;--ac:#8b8bf0;--ac2:#a78bfa;--rec:#34d3a0;--des:#ff7b7f;--meta:#fbbf4a;--sh:none}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Plus Jakarta Sans',system-ui,sans-serif;font-variant-numeric:tabular-nums}
+h1,h2{font-weight:800;margin:0;text-transform:uppercase;letter-spacing:.02em}
+header{background:linear-gradient(135deg,#5b5bd6,#8b5cf6);color:#fff;padding:20px 20px 22px;border-radius:0 0 28px 28px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}header h1{font-size:18px}
+.hero{display:flex;flex-wrap:wrap;gap:6px 28px;align-items:baseline;margin-top:10px;font-size:14px}.hero small{display:block;text-transform:uppercase;font-size:11px;font-weight:700;letter-spacing:.06em;opacity:.8}
+.big{font:800 34px 'Plus Jakarta Sans',sans-serif}
+.bar{height:8px;background:#ffffff40;border-radius:4px;margin-top:12px;overflow:hidden}.bar i{display:block;height:100%;background:#ffd36b;border-radius:4px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:12px 14px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);scrollbar-width:none}
+nav button{border:0;background:var(--sf);color:var(--mut);font:700 12px 'Plus Jakarta Sans',sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:10px 15px;border-radius:999px;box-shadow:var(--sh);cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--ac);color:#fff}
+main{padding:8px 14px 40px;max-width:1100px;margin:auto}
+h2{font-size:16px;margin:8px 0 14px}.box{background:var(--sf);border:1px solid var(--ln);border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:var(--sh)}
+.sc{overflow-x:auto}table{border-collapse:collapse;width:100%}th,td{padding:10px;text-align:right;border-bottom:1px solid var(--ln);white-space:nowrap}
+th{font-weight:700;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.06em}th:first-child,td:first-child,.l{text-align:left}tbody tr:hover{background:var(--bg)}
+tfoot td,tr.t td{font-weight:800;border-top:2px solid var(--ln);border-bottom:0}
+.p{color:var(--rec)}.n{color:var(--des)}.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.kv div{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:12px 14px;box-shadow:var(--sh)}.kv small{display:block;color:var(--mut);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.kv b{font-size:19px;font-weight:800}
+input,select,button{font:inherit}input,select{color:var(--ink);background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:9px 11px;min-width:0}
+input[type=checkbox]{width:18px;height:18px;padding:0;accent-color:var(--ac)}
+button.b{cursor:pointer;background:var(--ac);color:#fff;border:1px solid var(--ac);border-radius:10px;padding:9px 14px;font-weight:700}
+button.g{background:none;color:var(--ink);border-color:var(--ln)}button.b.gh{background:#ffffff26;color:#fff;border-color:#ffffff4d}button:disabled{opacity:.4;cursor:default}
+td button.b{padding:5px 10px;font-size:13px}
+.f{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin-bottom:12px}.f label,.lc label{display:flex;flex-direction:column;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mut);gap:4px}
+.bt{display:block;margin-bottom:10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:6px}.pg button{padding:9px 0;border:1px solid var(--ln);background:var(--sf);color:var(--ink);border-radius:10px;cursor:pointer}.pg button.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:700}
+details{border-bottom:1px solid var(--ln);padding:8px 0}summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:700}.sub{display:flex;justify-content:space-between;padding:4px 0 4px 18px;color:var(--mut)}
+.tg{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid var(--ln);color:var(--mut)}.ok{color:var(--rec);border-color:var(--rec)}.pa{color:var(--meta);border-color:var(--meta)}
+svg text{fill:var(--mut);font-size:11px}.note{color:var(--mut);font-size:13px}
+.stp{display:inline-flex;align-items:center;gap:8px}.stp button.b{padding:2px 10px;font-size:16px;line-height:1.3}
+.ch{display:inline-flex;align-items:center;background:var(--bg);border:1px solid var(--ln);border-radius:999px;padding:3px 4px 3px 12px;margin:6px 6px 0 0;font-size:13px}.ch button{border:0;background:none;color:var(--mut);cursor:pointer;font-size:18px;line-height:1;padding:0 8px}
+#lg{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));background:linear-gradient(135deg,#5b5bd6,#8b5cf6)}
+.lc{background:var(--sf);border-radius:24px;padding:28px 24px;width:100%;max-width:360px;box-shadow:0 20px 60px #0004;display:flex;flex-direction:column;gap:14px}.lc h1{font-size:18px;text-align:center}.lc p{margin:0;text-align:center}
+.lgi{width:56px;height:56px;margin:0 auto;border-radius:18px;background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;font-weight:800;font-size:18px;display:grid;place-items:center}
+.lc button.b{padding:12px}#le{min-height:18px;font-size:13px;text-align:center}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand>div{min-width:0}.brand img{width:38px;height:38px;flex:none;object-fit:contain;border-radius:10px;background:#ffffff2e;padding:3px}.brand h1{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.brand small{display:block;font-size:11px;font-weight:600;opacity:.85}
+.lgi{overflow:hidden}.lgi img{width:100%;height:100%;object-fit:contain}.lc .g{padding:10px}
+@media(max-width:640px){
+ body{font-size:14px}header{padding:16px 16px 20px;border-radius:0 0 24px 24px}.big{font-size:30px}main{padding:4px 12px 32px}
+ .box{padding:14px;border-radius:16px}input,select{font-size:16px}
+ .f label{flex:1 1 140px}.f input,.f select{width:100%!important}.f button.b{flex:1 1 auto;padding:12px}
+ .rs,.rs tbody,.rs tfoot,.rs tr{display:block}.rs thead{display:none}
+ .rs tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:12px;margin-bottom:10px;background:var(--sf);border:1px solid var(--ln);border-radius:14px}
+ .rs td{border:0!important;padding:0;text-align:left!important;white-space:normal}
+ .rs td:before{content:attr(data-l);display:block;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+ .rs td:empty{display:none}.rs td.ax{grid-column:1/-1;display:flex;gap:8px}.rs td.ax:before{display:none}.rs td.ax button{flex:1;padding:9px}
+ .box.sc:has(.rs){background:none;border:0;box-shadow:none;padding:0}
+}
+</style></head><body>
+<div id="lg"><form class="lc" onsubmit="entrarSB(event)"><div class="lgi"><img src="logo.png" alt="" onerror="this.replaceWith('R$')"></div><h1>Controle financeiro 2026</h1><p class="note">Entre ou crie sua conta</p>
+<label id="lnw" hidden>Nome<input id="ln" autocomplete="name"></label>
+<label>E-mail<input id="lu" type="email" autocomplete="email" autocapitalize="none" required></label>
+<label>Senha<input id="lp" type="password" minlength="6" autocomplete="current-password" required></label>
+<div id="le" class="n" role="alert"></div><button class="b" id="lsb">Entrar</button><button type="button" class="b g" id="lt" onclick="modoT()">Criar conta</button></form></div>
+<div id="app" hidden><header><div class="top"><div class="brand"><img src="logo.png" alt="" onerror="this.remove()"><div><h1>Controle financeiro 2026</h1><small><span id="who"></span> <span id="sv"></span></small></div></div><button class="b gh" onclick="sair()">Sair</button></div><div class="hero" id="hero"></div><div class="bar"><i id="hb"></i></div></header>
+<nav id="nav"></nav><main id="main"></main></div>
+<script>
+const SUPABASE_URL='https://ijpsdtdcinjfbzkadtnt.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqcHNkdGRjaW5qZmJ6a2FkdG50Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc5MTQwMDA3MywiZXhwIjoyMTA2OTc2MDczfQ.NTEcz4YFYLXh0zotW8Gm3X5h6OoFP8iXYMK9mSAV-Tw';
+const NEW=()=>({lanc:[],jan:{},fix:[],cfg:{meta:0,dias:365},ok:{},poup:[],tipos:{}});
+const MES=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+const MESF=['JANEIRO','FEVEREIRO','MARÇO','ABRIL','MAIO','JUNHO','JULHO','AGOSTO','SETEMBRO','OUTUBRO','NOVEMBRO','DEZEMBRO'];
+const $=s=>document.querySelector(s),R=n=>(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}),P=n=>((isFinite(n)?n:0)*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%';
+const cl=n=>n<0?'n':'p',iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S,C,tab='cons',fl={m:'',f:'',q:''},edit=null,dm=null,fm=new Date().getMonth(),acum=false;
+S=NEW();let sb,U=null,PF=null,tmr=null,modo='in';
+const stat=x=>{const e=$('#sv');if(e)e.textContent=x?'· '+x:''};
+const save=()=>{clearTimeout(tmr);stat('salvando…');tmr=setTimeout(push,500)};
+async function push(){tmr=null;if(!U)return;const{error}=await sb.from('finance_data').upsert({user_id:U.id,data:S,updated_at:new Date().toISOString()});stat(error?'⚠ erro ao salvar':'salvo')}
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&tmr){clearTimeout(tmr);push()}});
+function calc(){const c=S.cfg,hoje=new Date();hoje.setHours(0,0,0,0);
+ const dt=Math.round((hoje-new Date(2026,0,1))/864e5),rest=c.dias-dt,md=c.meta/c.dias,day={};
+ S.lanc.forEach(x=>{const o=day[x.d]??={r:0,e:0};o[x.f=='RECEITA'?'r':'e']+=x.v});
+ const rows=[];for(let i=0;i<c.dias;i++){const d=new Date(2026,0,1+i),k=iso(d);rows.push({k,m:d.getMonth(),dia:d.getDate(),r:(day[k]||{}).r||0,e:(day[k]||{}).e||0})}
+ const real=rows.reduce((a,x)=>a+x.r,0),ate=md*dt,def=real-ate,dil=rest>0?-def/rest:0,mr=md+dil;
+ rows.forEach(x=>{const j=S.jan[x.k];x.fx=j?j[0]:md;x.vr=j?j[1]:mr;x.diz=x.r*.1;x.res=x.r*.025});
+ return{dt,rest,md,real,ate,def,dil,mr,rows}}
+const T={cons:'Consolidado',pain:'Painel',graf:'Gráfico receita',det:'Det. despesas',fix:'Desp. fixas',dad:'Dados',pou:'Poupança'};
+function hero(){const pc=S.cfg.meta?C.real/S.cfg.meta:0;$('#hero').innerHTML=`<div><small>Meta real por dia</small><div class="big">${R(C.mr)}</div></div><div>Meta do ano ${R(S.cfg.meta)} · realizado ${R(C.real)} (${P(pc)})</div><div>${C.rest} dias restantes</div>`;$('#hb').style.width=Math.min(100,pc*100)+'%'}
+function cons(){let t={r:0,e:0,d:0,s:0,sa:0,at:0,fx:0,vr:0};const b=MES.map((m,i)=>{const x=C.rows.filter(r=>r.m==i),o={r:0,e:0,d:0,s:0,fx:0,vr:0};x.forEach(r=>{o.r+=r.r;o.e+=r.e;o.d+=r.diz;o.s+=r.res;o.fx+=r.fx;o.vr+=r.vr});o.sa=o.r-o.e-o.d-o.s;o.at=o.r-o.fx;for(k in t)t[k]+=o[k];
+ return`<tr><td>${m}</td><td>${R(o.r)}</td><td>${R(o.e)}</td><td>${R(o.d)}</td><td>${R(o.s)}</td><td class=${cl(o.sa)}>${R(o.sa)}</td><td class=${cl(o.at)}>${R(o.at)}</td><td>${P(o.r/o.fx)}</td><td>${R(o.fx)}</td><td>${R(o.vr)}</td></tr>`}).join('');
+ return`<h2>Consolidado de ganhos x despesas</h2><div class="box sc"><table><thead><tr><th>Mês<th>Receita<th>Despesa<th>Dízimo<th>Reserva<th>Saldo<th>Ating. meta<th>Ating. %<th>Meta fixa<th>Meta variável</tr></thead><tbody>${b}</tbody><tfoot><tr><td>TOTAL<td>${R(t.r)}<td>${R(t.e)}<td>${R(t.d)}<td>${R(t.s)}<td class=${cl(t.sa)}>${R(t.sa)}<td class=${cl(t.at)}>${R(t.at)}<td>${P(t.r/t.fx)}<td>${R(t.fx)}<td>${R(t.vr)}</tr></tfoot></table></div><p class=note>Dízimo = 10% da receita · Reserva = 2,5% · Saldo = receita − despesa − dízimo − reserva.</p>`}
+function pain(){
+ return`<h2>Anotações de receita e despesas</h2><div class=box><form class=f onsubmit="addL(event)"><label>Data<input type=date id=fd required></label><label>Valor<input type=number step=.01 inputmode=decimal id=fv required style="width:110px"></label><label>Fluxo<select id=ff><option>DESPESA<option>RECEITA</select></label><label>Tipo<select id=ft required onchange="fillS()" style="width:150px"></select></label><label>Subtipo<select id=fs style="width:150px"></select></label><label>Pagamento<select id=fp><option>PIX<option>DÉBITO<option>CRÉDITO<option>ESPECIE</select></label><label>Observação<input id=fo style="width:170px"></label><button class=b id=fb>Adicionar</button></form></div>
+ <div class=box><span class=bt>Tipos e subtipos</span><div id=tm></div></div>
+ <div class=box><div class=f><label>Mês<select onchange="fl.m=this.value;fillL()"><option value="">Todos${MES.map((m,i)=>`<option value=${i}>${m}`).join('')}</select></label><label>Fluxo<select onchange="fl.f=this.value;fillL()"><option value="">Todos<option>DESPESA<option>RECEITA</select></label><label>Buscar<input oninput="fl.q=this.value;fillL()" placeholder="tipo, subtipo, obs."></label><span id=lc class=note></span></div>
+ <div class=sc style="max-height:460px;overflow-y:auto"><table class=rs><thead><tr><th>Data<th>Valor<th>Fluxo<th class=l>Tipo<th class=l>Subtipo<th>Pgto<th class=l>Observação<th></tr></thead><tbody id=lb></tbody></table></div></div>`}
+function fillS(v){const a=S.tipos[ft.value]||[];fs.innerHTML='<option value="">— sem subtipo'+a.map(s=>`<option>${esc(s)}`).join('');if(v!=null)fs.value=v}
+function fillT(){TP=Object.keys(S.tipos).sort((a,b)=>a.localeCompare(b,'pt-BR'));const cur=ft.value,sv=fs.value,o=TP.map(t=>`<option>${esc(t)}`).join('');ft.innerHTML=o;if(TP.includes(cur))ft.value=cur;fillS(sv);
+ $('#tm').innerHTML=`<form class=f onsubmit="addT(event)"><label>Novo tipo<input id=tn required placeholder="EX.: SAÚDE"></label><button class=b>Cadastrar tipo</button></form><form class=f onsubmit="addS(event)"><label>Tipo<select id=tt>${o}</select></label><label>Novo subtipo<input id=tb required placeholder="EX.: FARMÁCIA"></label><button class=b>Cadastrar subtipo</button></form>${TP.map((t,i)=>`<details><summary><span>${esc(t)} <span class=note>(${S.tipos[t].length})</span></span><button type=button class="b g" onclick="event.preventDefault();delT(${i})">Excluir</button></summary>${S.tipos[t].map((s,j)=>`<span class=ch>${esc(s)}<button type=button aria-label="Remover subtipo" onclick="delS(${i},${j})">×</button></span>`).join('')||'<span class=note>Nenhum subtipo.</span>'}</details>`).join('')||'<p class=note>Cadastre um tipo para começar.</p>'}`}
+function addT(e){e.preventDefault();const v=tn.value.trim().toUpperCase();if(S.tipos[v])return alert('Tipo já cadastrado.');S.tipos[v]=[];save();fillT();ft.value=v;fillS()}
+function addS(e){e.preventDefault();const t=tt.value,v=tb.value.trim().toUpperCase();if(!t)return alert('Cadastre um tipo primeiro.');const a=S.tipos[t];if(a.includes(v))return alert('Subtipo já cadastrado.');a.push(v);a.sort((x,y)=>x.localeCompare(y,'pt-BR'));save();fillT();tt.value=t}
+function delT(i){if(confirm('Remover este tipo e seus subtipos da lista? Lançamentos já feitos não são alterados.')){delete S.tipos[TP[i]];save();fillT()}}
+function delS(i,j){S.tipos[TP[i]].splice(j,1);save();fillT()}
+function fillL(){const q=fl.q.toUpperCase(),a=S.lanc.filter(x=>(fl.m===''||+x.d.slice(5,7)-1==fl.m)&&(!fl.f||x.f==fl.f)&&(!q||(x.t+x.s+x.o).toUpperCase().includes(q))).sort((a,b)=>b.d.localeCompare(a.d)||b.id-a.id);
+ const s=a.reduce((n,x)=>n+(x.f=='RECEITA'?x.v:-x.v),0);$('#lc').textContent=`${a.length} lançamentos · saldo ${R(s)}`;
+ $('#lb').innerHTML=a.slice(0,400).map(x=>`<tr><td data-l="Data">${x.d.split('-').reverse().join('/')}<td data-l="Valor" class=${x.f=='RECEITA'?'p':'n'}>${R(x.v)}<td data-l="Fluxo">${x.f}<td data-l="Tipo" class=l>${esc(x.t)}<td data-l="Subtipo" class=l>${esc(x.s)}<td data-l="Pgto">${x.p}<td data-l="Observação" class=l>${esc(x.o)}<td class=ax><button class="b g" onclick="ed(${x.id})">Editar</button> <button class="b g" onclick="del(${x.id})">Excluir</button></tr>`).join('')}
+function addL(e){e.preventDefault();const x={d:fd.value,v:+fv.value,f:ff.value,t:ft.value.toUpperCase(),s:fs.value.toUpperCase(),p:fp.value,o:fo.value.toUpperCase()};
+ if(edit){Object.assign(S.lanc.find(y=>y.id==edit),x);edit=null}else{x.id=Math.max(0,...S.lanc.map(y=>y.id))+1;S.lanc.push(x)}save();go()}
+function ed(id){const x=S.lanc.find(y=>y.id==id);edit=id;const a=S.tipos[x.t]??=[];if(x.s&&!a.includes(x.s))a.push(x.s);save();fillT();fd.value=x.d;fv.value=x.v;ff.value=x.f;ft.value=x.t;fillS(x.s);fp.value=x.p;fo.value=x.o;fb.textContent='Salvar alteração';fd.scrollIntoView({block:'center'})}
+function del(id){if(confirm('Excluir este lançamento?')){S.lanc=S.lanc.filter(x=>x.id!=id);save();go()}}
+function graf(){const r=C.rows;let a=r.map(x=>x.r),b=r.map(x=>x.vr);if(acum){let s=0,u=0;a=a.map(v=>s+=v);b=b.map(v=>u+=v)}
+ const W=900,H=300,m=40,mx=Math.max(...a,...b)||1,X=i=>m+i*(W-m-8)/(r.length-1),Y=v=>H-24-v*(H-40)/mx,pl=z=>z.map((v,i)=>X(i).toFixed(1)+','+Y(v).toFixed(1)).join(' ');
+ const gy=[0,.25,.5,.75,1].map(f=>`<line x1=${m} x2=${W} y1=${Y(mx*f)} y2=${Y(mx*f)} stroke="var(--ln)"/><text x=0 y=${Y(mx*f)+4}>${Math.round(mx*f/1000)}k</text>`).join(''),gx=MES.map((n,i)=>{const j=r.findIndex(x=>x.m==i);return`<text x=${X(j)} y=${H-6}>${n}</text>`}).join('');
+ return`<h2>Gráfico de meta de receitas</h2><div class=kv><div><small>Meta dia</small><b>${R(C.md)}</b></div><div><small>Meta (déficit até hoje)</small><b class=${cl(C.def)}>${R(C.def)}</b></div><div><small>Meta real por dia</small><b>${R(C.mr)}</b></div></div><div class="box"><label><input type=checkbox ${acum?'checked':''} onchange="acum=this.checked;go()"> Mostrar acumulado</label>
+ <div class=sc><svg viewBox="0 0 ${W} ${H}" style="min-width:640px;width:100%">${gy}${gx}<polyline fill=none stroke="var(--meta)" stroke-width=2 stroke-dasharray="5 4" points="${pl(b)}"/><polyline fill=none stroke="var(--rec)" stroke-width=1.6 points="${pl(a)}"/></svg></div><span class=p>━ Receita</span> &nbsp; <span style="color:var(--meta)">╍ Meta variável</span></div>`}
+function det(){const ms=dm??(+S.lanc.reduce((a,x)=>x.d>a?x.d:a,'').slice(5,7)-1),a=S.lanc.filter(x=>x.f=='DESPESA'&&(ms<0||+x.d.slice(5,7)-1==ms)),g={};
+ a.forEach(x=>{const t=g[x.t]??={v:0,s:{}};t.v+=x.v;t.s[x.s||'(sem subtipo)']=(t.s[x.s||'(sem subtipo)']||0)+x.v});const tot=a.reduce((n,x)=>n+x.v,0);
+ return`<h2>Despesas detalhadas</h2><div class=f><label>Período<select onchange="dm=+this.value;go()"><option value=-1 ${ms<0?'selected':''}>Ano todo${MES.map((m,i)=>`<option value=${i} ${ms==i?'selected':''}>${MESF[i]}`).join('')}</select></label></div><div class=box>${Object.entries(g).sort((x,y)=>y[1].v-x[1].v).map(([t,o])=>`<details><summary><span>${esc(t)}</span><span>${R(o.v)} · ${P(o.v/tot)}</span></summary>${Object.entries(o.s).sort((x,y)=>y[1]-x[1]).map(([s,v])=>`<div class=sub><span>${esc(s)}</span><span>${R(v)}</span></div>`).join('')}</details>`).join('')||'<p class=note>Sem despesas neste período.</p>'}<div class=sub style="padding:10px 0 0;font-weight:700;color:var(--ink)"><span>Total geral</span><span>${R(tot)}</span></div></div>`}
+function fixSt(f){if(f.m)return fixV(f)>=f.v?'OK':'PARCIAL';return S.ok[fm+':'+f.id]?'OK':''}
+function fixV(f){if(!f.m)return 0;return S.lanc.filter(x=>x.f=='DESPESA'&&+x.d.slice(5,7)-1==fm&&x[f.m[0]]==f.m[1]).reduce((n,x)=>n+x.v,0)}
+function parc(f){const m=/^(\d+) DE (\d+)$/.exec((f.o||'').trim());return m?[+m[1],+m[2]]:null}
+let fe=null,TP=[];
+function mig(){S.ok=S.ok||{};S.fix.forEach((f,i)=>{if(f.id==null)f.id=i});if(!S.tipos){S.tipos={};S.lanc.forEach(x=>{if(x.t){const a=S.tipos[x.t]??=[];if(x.s&&!a.includes(x.s))a.push(x.s)}})}}
+function addF(e){e.preventDefault();const a=+xp.value,t=+xt.value,x={dia:+xd.value,v:+xv.value,i:xi.value.trim().toUpperCase(),c:xc.value.trim().toUpperCase()};
+ if(!a!=!t)return alert('Informe a parcela atual e o total de parcelas, ou deixe os dois em branco.');if(a>t)return alert('A parcela atual não pode ser maior que o total.');
+ const f=fe==null?null:S.fix.find(y=>y.id==fe);x.o=a?a+' DE '+t:(f&&!parc(f)?f.o:'');
+ if(f)Object.assign(f,x);else{x.m=null;x.id=Math.max(-1,...S.fix.map(y=>y.id))+1;S.fix.push(x)}fe=null;save();go()}
+function edF(id){fe=id;go();xd.scrollIntoView({block:'center'})}
+function delF(id){if(confirm('Excluir esta despesa fixa?')){S.fix=S.fix.filter(f=>f.id!=id);Object.keys(S.ok).filter(k=>k.split(':')[1]==id).forEach(k=>delete S.ok[k]);fe=null;save();go()}}
+function pp(id,d){const f=S.fix.find(y=>y.id==id),q=parc(f);if(!q)return;f.o=Math.min(q[1],Math.max(1,q[0]+d))+' DE '+q[1];save();go()}
+function fix(){let pg=0,pe=0,pa=0,tv=0,tp=0;const e=fe==null?null:S.fix.find(f=>f.id==fe),q0=e&&parc(e),cats=[...new Set(S.fix.map(f=>f.c))].sort();
+ const b=S.fix.map(f=>{const st=fixSt(f),v=fixV(f),q=parc(f);tv+=f.v;tp+=v;if(st=='OK')pg+=f.v;else if(st=='')pe+=f.v;else pa+=f.v;
+  const ob=q?`<span class=stp><button class="b g" onclick="pp(${f.id},-1)" aria-label="Parcela anterior" ${q[0]<=1?'disabled':''}>−</button><b>${q[0]} DE ${q[1]}</b><button class="b g" onclick="pp(${f.id},1)" aria-label="Próxima parcela" ${q[0]>=q[1]?'disabled':''}>+</button></span>${q[0]>=q[1]?' <span class="tg ok">ÚLTIMA</span>':''}`:esc(f.o);
+  return`<tr><td data-l="Data">DIA ${f.dia}<td data-l="Valor">${R(f.v)}<td data-l="Mês atual">${f.m?R(v):''}<td class=l data-l="Item">${esc(f.i)}<td class=l data-l="Categoria">${esc(f.c)}<td data-l="Pagamento">${f.m?`<span class="tg ${st=='OK'?'ok':'pa'}">${st}</span>`:`<input type=checkbox ${st?'checked':''} onchange="S.ok['${fm}:${f.id}']=this.checked;save();go()" aria-label="Pago"> <span class="tg ${st?'ok':''}">${st||'PENDENTE'}</span>`}<td class=l data-l="Observação">${ob}<td class=ax><button class="b g" onclick="edF(${f.id})">Editar</button> <button class="b g" onclick="delF(${f.id})">Excluir</button></tr>`}).join('');
+ return`<h2>Despesas fixas</h2><div class=box><span class=bt>${e?'Editar despesa fixa':'Cadastrar despesa fixa'}</span><form class=f onsubmit="addF(event)"><label>Dia<input type=number min=1 max=31 id=xd required style="width:80px" value="${e?e.dia:''}"></label><label>Valor<input type=number step=.01 inputmode=decimal id=xv required style="width:110px" value="${e?e.v:''}"></label><label>Item<input id=xi required value="${e?esc(e.i):''}"></label><label>Categoria<input id=xc list=xl required value="${e?esc(e.c):''}"></label><label>Parcela atual<input type=number min=1 id=xp placeholder="opcional" style="width:110px" value="${q0?q0[0]:''}"></label><label>Total de parcelas<input type=number min=1 id=xt placeholder="opcional" style="width:130px" value="${q0?q0[1]:''}"></label><button class=b>${e?'Salvar alteração':'Adicionar'}</button>${e?'<button type=button class="b g" onclick="fe=null;go()">Cancelar</button>':''}</form><datalist id=xl>${cats.map(c=>`<option value="${esc(c)}">`).join('')}</datalist><p class=note style="margin:0">Despesa parcelada: preencha parcela atual e total. Depois use − e + na tabela para avançar a parcela a cada mês.</p></div>
+ <div class=f><label>Mês<select onchange="fm=+this.value;go()">${MESF.map((m,i)=>`<option value=${i} ${fm==i?'selected':''}>${m}`).join('')}</select></label></div><div class=kv><div><small>Pago</small><b class=p>${R(pg)}</b></div><div><small>Pendente</small><b class=n>${R(pe)}</b></div><div><small>Parcial</small><b>${R(pa)}</b></div></div><div class="box sc"><table class=rs><thead><tr><th>Data<th>Valor<th>Mês atual<th class=l>Item<th class=l>Categoria<th>Pagamento<th class=l>Observação<th></tr></thead><tbody>${b}</tbody><tfoot><tr><td data-l="Total">TOTAL<td data-l="Valor">${R(tv)}<td data-l="Mês atual">${R(tp)}<td colspan=5></tr></tfoot></table></div><p class=note>Itens com regra (supermercado, combustível, lazer, diarista, remédio) somam os lançamentos do mês e ficam OK quando atingem o valor; os demais você marca como pago.</p>`}
+function dad(){const c=C,o=(k,v,n)=>`<div><small>${k}</small><b ${n?`class=${cl(v)}`:''}>${typeof v=='number'&&!/dias/i.test(k)?R(v):v}</b></div>`,mm=dm??-1;
+ return`<h2>Dados diários e parâmetros</h2><div class=kv>${o('Dias trabalhados',c.dt)}${o('Total de dias',S.cfg.dias)}${o('Dias restantes',c.rest)}<div><small>Meta do ano</small><input type=number value=${S.cfg.meta} onchange="S.cfg.meta=+this.value;save();go()" style="width:100%;font-weight:600"></div>${o('Meta por dia',c.md)}${o('Receita realizada',c.real)}${o('Meta até o momento',c.ate)}${o('Déficit',c.def,1)}${o('Déficit diluído por dia',c.dil)}${o('Meta real por dia',c.mr)}</div>
+ <div class=f><label>Mês<select onchange="dm=+this.value;go()"><option value=-1>Ano todo${MES.map((m,i)=>`<option value=${i} ${mm==i?'selected':''}>${m}`).join('')}</select></label></div><div class="box sc" style="max-height:480px;overflow-y:auto"><table><thead><tr><th>Data<th>Mês<th>Dia<th>Receita<th>Despesa<th>Meta fixa<th>Meta variável<th>Dízimo 10%<th>Reserva 2,5%</tr></thead><tbody>${c.rows.filter(r=>mm<0||r.m==mm).map(r=>`<tr><td>${r.k.split('-').reverse().join('/')}<td>${MES[r.m]}<td>${r.dia}<td>${R(r.r)}<td>${R(r.e)}<td>${R(r.fx)}<td>${R(r.vr)}<td>${R(r.diz)}<td>${R(r.res)}</tr>`).join('')}</tbody></table></div>
+ <div class=f><button class=b onclick="bkp()">Baixar backup (JSON)</button><label class=note>Restaurar backup<input type=file accept=".json" onchange="rst(this.files[0])"></label></div><p class=note>Seus dados ficam salvos na sua conta (Supabase), separados dos demais usuários. Baixe um backup de vez em quando.</p>`}
+function pou(){const n=[...Array(315)].map((_,i)=>i+1),on=new Set(S.poup),re=on.size,tot=[...on].reduce((a,b)=>a+b,0);
+ return`<h2>Desafio dos depósitos</h2><div class=kv><div><small>Quantidade total de depósitos</small><b>315</b></div><div><small>Depósitos realizados</small><b>${re}</b></div><div><small>Dias do ano</small><b>${C.dt}</b></div><div><small>Depósitos x dias</small><b class=${cl(re-C.dt)}>${re-C.dt}</b></div><div><small>Total em depósitos</small><b>${R(tot)}</b></div><div><small>Depósitos restantes</small><b>${315-re}</b></div></div><div class="box pg">${n.map(v=>`<button class="${on.has(v)?'on':''}" aria-pressed=${on.has(v)} onclick="tg(${v})">${v}</button>`).join('')}</div><p class=note>Toque no número para marcar o depósito feito.</p>`}
+function tg(v){const s=new Set(S.poup);s.has(v)?s.delete(v):s.add(v);S.poup=[...s];save();go()}
+function bkp(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));a.download='controle-financeiro-2026.json';a.click()}
+function rst(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.lanc)throw 0;S={...NEW(),...x};save();go()}catch(e){alert('Arquivo de backup inválido.')}};r.readAsText(f)}
+function go(){mig();C=calc();hero();$('#nav').innerHTML=Object.entries(PF&&PF.role=='admin'?{...T,usr:'Usuários'}:T).map(([k,v])=>`<button class="${k==tab?'on':''}" onclick="tab='${k}';edit=null;fe=null;go()">${v}</button>`).join('');$('#main').innerHTML={cons,pain,graf,det,fix,dad,pou,usr}[tab]();if(tab=='pain'){fillT();fillL()}if(tab=='usr')loadU()}
+function usr(){return`<h2>Controle de usuários</h2><div class=box><div id=ul class=sc><p class=note>Carregando…</p></div></div><p class=note>Contas novas ficam pendentes até você aprovar. Cada usuário só enxerga os próprios dados.</p>`}
+async function loadU(){const{data,error}=await sb.from('profiles').select('*').order('created_at');if(error)return $('#ul').innerHTML='<p class=note>Erro ao carregar usuários.</p>';
+ $('#ul').innerHTML=`<table class=rs><thead><tr><th class=l>Nome<th class=l>E-mail<th>Perfil<th>Situação<th>Criado em<th></tr></thead><tbody>${data.map(u=>`<tr><td class=l data-l="Nome">${esc(u.nome)}<td class=l data-l="E-mail">${esc(u.email)}<td data-l="Perfil">${u.role=='admin'?'ADMIN':'USUÁRIO'}<td data-l="Situação"><span class="tg ${u.ativo?'ok':'pa'}">${u.ativo?'ATIVO':'PENDENTE/INATIVO'}</span><td data-l="Criado em">${u.created_at.slice(0,10).split('-').reverse().join('/')}<td class=ax>${u.id==U.id?'<span class=note>Você</span>':`<button class="b g" onclick="setU('${u.id}',{ativo:${!u.ativo}})">${u.ativo?'Desativar':'Aprovar'}</button> <button class="b g" onclick="setU('${u.id}',{role:'${u.role=='admin'?'user':'admin'}'})">${u.role=='admin'?'Tirar admin':'Tornar admin'}</button>`}</tr>`).join('')}</tbody></table>`}
+async function setU(id,p){const{error}=await sb.from('profiles').update(p).eq('id',id);if(error)alert(error.message);loadU()}
+const msg=(x,ok)=>{le.textContent=x;le.className=ok?'note':'n'};
+function modoT(){modo=modo=='novo'?'in':'novo';lnw.hidden=modo!='novo';lsb.textContent=modo=='novo'?'Criar conta':'Entrar';lt.textContent=modo=='novo'?'Já tenho conta':'Criar conta';lp.autocomplete=modo=='novo'?'new-password':'current-password';msg('')}
+async function entrarSB(e){e.preventDefault();msg('');const em=lu.value.trim(),pw=lp.value;
+ if(modo=='novo'){const{data,error}=await sb.auth.signUp({email:em,password:pw,options:{data:{nome:ln.value.trim()}}});if(error)return msg(error.message);if(!data.session){modoT();return msg('Conta criada. Confirme o e-mail e depois entre.',1)}}
+ else{const{error}=await sb.auth.signInWithPassword({email:em,password:pw});if(error)return msg('E-mail ou senha inválidos.')}
+ lp.value='';abrir()}
+async function abrir(){const{data:{session}}=await sb.auth.getSession();if(!session)return tela(false);U=session.user;
+ const{data:p}=await sb.from('profiles').select('*').eq('id',U.id).maybeSingle();PF=p;
+ if(!p||!p.ativo){await sb.auth.signOut();U=PF=null;tela(false);return msg(p?'Conta criada. Aguarde a aprovação do administrador para entrar.':'Perfil não encontrado. Rode o SQL de configuração no Supabase.',!!p)}
+ const{data:r,error}=await sb.from('finance_data').select('data').eq('user_id',U.id).maybeSingle();
+ if(error){tela(false);return msg('Erro ao carregar seus dados: '+error.message)}
+ S=r&&r.data&&r.data.lanc?{...NEW(),...r.data}:NEW();S.lanc.forEach((x,i)=>x.id=x.id||i+1);if(!r)push();tela(true)}
+async function sair(){await sb.auth.signOut();U=PF=null;S=NEW();tab='cons';tela(false)}
+function tela(ok){$('#lg').hidden=ok;$('#app').hidden=!ok;if(ok){$('#who').textContent=PF.nome||PF.email;stat('');go()}}
+if(SUPABASE_URL.startsWith('COLE'))msg('Configure SUPABASE_URL e SUPABASE_KEY no início do script.');else{sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);abrir()}
+</script></body></html>
